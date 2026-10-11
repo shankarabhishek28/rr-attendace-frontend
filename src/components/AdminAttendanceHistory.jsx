@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import api from '../api/auth';
+import API_URL from '../config';
 import styles from './AttendanceHistory.module.css';
 
 function formatDate(isoStr) {
@@ -68,7 +69,7 @@ export default function AdminAttendanceHistory() {
     if (selectedEmp) params.set('employeeId', selectedEmp);
     const token = localStorage.getItem('rr_token');
     // Use a hidden link to trigger download with auth
-    const url = `http://localhost:5000/api/admin/export?${params}`;
+    const url = `${API_URL}/api/admin/export?${params}`;
     fetch(url, { headers: { Authorization: `Bearer ${token}` } })
       .then(r => r.blob())
       .then(blob => {

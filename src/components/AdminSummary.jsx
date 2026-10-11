@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import api from '../api/auth';
+import API_URL from '../config';
 import styles from './AttendanceHistory.module.css';
 
 function getDefaultFrom() {
@@ -45,7 +46,7 @@ export default function AdminSummary() {
   const handleExport = () => {
     const params = new URLSearchParams({ type: 'summary', from, to });
     const token = localStorage.getItem('rr_token');
-    fetch(`http://localhost:5000/api/admin/export?${params}`, {
+    fetch(`${API_URL}/api/admin/export?${params}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(r => r.blob())
