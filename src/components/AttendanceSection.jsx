@@ -21,7 +21,7 @@ function formatHours(h) {
 function statusLabel(status) {
   if (status === 'present') return 'Full Day';
   if (status === 'half_day') return 'Half Day';
-  if (status === 'absent') return 'Absent \u2014 under 4.5 hours';
+  if (status === 'absent') return 'Absent';
   return status;
 }
 
@@ -246,6 +246,14 @@ export default function AttendanceSection() {
                   <span>
                     <strong>Punched in</strong> at <strong>{formatTime(todayRecord.punchInTime)}</strong>
                     {' '}&mdash; Elapsed: <ElapsedTime since={todayRecord.punchInTime} />
+                  </span>
+                </div>
+
+                <div className={styles.alertBox} data-variant="info" role="note">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  <span>
+                    <strong>8.5h</strong> = Full Day &bull; <strong>4.5h</strong> = Half Day &bull; under 4.5h = Absent.
+                    {' '}Ensure you punch out before leaving &mdash; unpunched records are marked <strong>Absent</strong> at midnight.
                   </span>
                 </div>
 
